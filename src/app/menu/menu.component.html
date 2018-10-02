@@ -1,0 +1,157 @@
+<style>
+table, th , td  {
+  border: 0px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+label{
+font-weight:bold;
+}
+</style>
+
+<div ng-app="" style="margin-top: 40px; margin-left: 80px;">
+<h5 ng-hide="showme">Add Task</h5>
+<h5 ng-show="showme">View Task</h5>
+<div><h4>Task Manager</h4>
+  <div class="row">
+   <div class="col-xs-12">
+	<B><a href="" ng-click="showme=false">AddTask</a></B>&nbsp;&nbsp;
+	<B><a href="" ng-click="showme=true">ViewTask</a></B>
+  </div>
+ </div>
+<div id="AddTaskDiv" ng-hide="showme">
+ <Table style="width:300px;">
+   <TR>
+		<TD><label for="InputTask"> Task: </label></TD>
+		<TD><input type="text" id="InputTask" class="form-control"></TD>
+	</TR>
+	 <TR>
+		<TD><label for="InputTask"> Priority: </label></TD>
+		<TD><input type="text" id="InputTask" class="form-control"></TD>
+	</TR>
+	 <TR>
+		<TD><label for="InputParentTask"> Parent Task: </label></TD>
+		<TD><input type="text" id="InputParentTask" class="form-control"></TD>
+	</TR>
+	 <TR>
+		<TD><label for="InputStartDate"> Start Date: </label></TD>
+		<TD><input type="text" id="InputStartDate" class="form-control"></TD>
+	</TR>
+	 <TR>
+		<TD><label for="InputEndDate"> End Date: </label></TD>
+		<TD><input type="text" id="InputEndDate" class="form-control"></TD>
+	</TR>
+	<TR>
+		<TD><label for="InputEndDate"></label></TD>
+		<TD><input type="submit" class="btn btn-success" value="AddTask">&nbsp;&nbsp;&nbsp;
+		<input type="button" class="btn btn-success" value="Reset">
+		</TD>
+	</TR>
+</Table>
+</div>
+<div id="AddTaskDiv" ng-show="showme">
+ <Table style="width:850px;border:0;padding:0px;">
+   <TR>
+		<TD style="width:140px;"><label for="SearchTask">Task:</label></TD>
+		<TD colspan="3" style="width:300px;"><input type="text" id="SearchTask" class="form-control" style="width:270px;"></TD>
+		<TD style="width:115px;"><label for="SearchParentTask">Parent Task:</label></TD>
+		<TD colspan="3" style="width:290px;"><input type="text" id="SearchParentTask" class="form-control" style="width:315px;"></TD>
+	</TR>
+	<TR>
+		<TD style="width:140px;"><label for="SearchPriorityFrom"> Priority From: </label></TD>
+		<TD style="width:80px;"><input type="text" id="SearchPriorityFrom" class="form-control" style="width:80px;"></TD>
+		<TD style="width:85px;"><label for="SearchPriorityTo"> Priority To: </label></TD>
+		<TD style="width:80px;"><input type="text" id="SearchPriorityTo" class="form-control" style="width:80px;"></TD>
+		<TD style="width:115px;"><label for="SearchStartDate"> Start Date: </label></TD>
+		<TD style="width:100px;"><input type="text" id="SearchStartDate" class="form-control" style="width:100px;"></TD>
+		<TD style="width:80px;"><label for="SearchEndDate"> End Date: </label></TD>
+		<TD style="width:100px;"><input type="text" id="SearchEndDate" class="form-control" style="width:100px;"></TD>
+	</TR>
+</Table>
+</div><br />
+<div>
+
+<p ng-hide="Tasks.length > 0">No books available</p>
+ <table class="table table-striped" ng-show="Tasks.length > 0">
+                    <thead>
+                        <tr>
+                            <th>
+                                Task
+                            </th>
+                            <th>
+                                Parent
+                            </th>
+                            <th>
+                                Priority
+                            </th>
+                            <th>
+                                Start
+                            </th>
+							<th>
+                                End
+                            </th>
+                            <th>
+								Action
+                            </th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                        <tr ng-repeat="item in Tasks">
+                            <td>
+                               {{item}}
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                               
+                            </td>
+                            <td>
+                               
+                            </td>
+							  <td>
+                               
+                            </td>
+                            <td>
+                                <input type="Button" class="btn btn-info"
+                                       value="Edit" ng-click="setEditBook(item)"> &nbsp;&nbsp;
+								<input type="Button" class="btn btn-info"
+                                       value="End Task" ng-click="setEditBook(item)">
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+</div>
+ </div>
+
+ 
+ <!--  <div style="margin-top: 150px; margin-left: 150px;"><B>Task Manager</B></div>
+  <div class="row">
+   <div class="col-xs-12">
+    <ul class="nav nav-pills">
+     <li routerLinkActive="active"> <a [routerLink]="['/weather']" >Weather</a></li>
+     <li routerLinkActive="active"> <a [routerLink]="['/movie']" >Movie Details</a></li>
+     <li routerLinkActive="active"> <a [routerLink]="['/currency']" >Currency Rates</a></li>
+    </ul
+	<a [routerLink]="['/AddTask']" >AddTask</a>
+	<a [routerLink]="['/ViewTask']" >ViewTask</a>
+  </div>
+ </div>  -->
+
+<!-- <h2>Yahoo API Weather Angual App </h2>
+<div class="col-md-8 col-md-offset-2">
+ <div class="form-group">
+  <input type="text" [(ngModel)]="id_city" class="form-control" placeholder="Enter City name ..."><br>
+  <button type="button" class="btn btn-primary" (click)="callWeatherService()">Submit</button>
+  <br><br><br>
+  <br>
+  <p class="well lead">
+    <i>Current Condition :</i> {{ this.op_text }} <br>
+    <i>Current Temperature :</i> {{ this.op_temp }} <br>
+  </p>
+  <p class="text-info">Total # of all the service requests including Weather, Movie, and Currency is :
+    <span class="badge">{{this._sharedService.totReqsMade}}</span>
+  </p>
+ </div>
+</div> -->
